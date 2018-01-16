@@ -9,18 +9,46 @@
 ;
 ; The above copyright notice and this permission notice shall be included in
 ; all copies or substantial portions of the Software.
-; -----------------------------------------------------------------------------
-;   File: SNESInitialization.inc
-;   Author(s): Georg Ziegler
-;   Description: This a header file for SNESInitialization.s, include this
-;   to use the subroutines in afore mentioned file
 ;
 
+.include "SNESRegisters.inc"
+.include "SNESInitialization.inc"
+; ca65 Assembler Directives
+.p816
+.i16
+.a8
+
 ;-------------------------------------------------------------------------------
-;   Routines found in this file
+;   Exports of subroutines for use in other files
 ;-------------------------------------------------------------------------------
-.import     ClearRegisters      ; Clear all PPU and CPU registers of the SNES
-.import     ClearVRAM           ; Clear the complete VRAM to $00
-.import     ClearCGRAM          ; Clear CG-RAM to $00 (black)
-.import     ClearOAMRAM         ; Clear OAM-RAM to $ff (all sprites off screen)
+.export     ResetHandler
+.export     NMIHandler
+.export     IRQHandler
 ;-------------------------------------------------------------------------------
+
+.segment "CODE"
+.proc   ResetHandler
+; diable Interrupts
+; set to native mode
+; set A to 8 bit
+; set up Stack
+; force blanking
+
+        clc                         ; set to native mode
+        xce
+        jml GameLoop
+.endproc
+
+GameLoop:
+        wai
+        jmp GameLoop
+
+.proc   NMIHanler
+        lda RDNMI                   ; read NMI status
+        rti
+.endproc
+
+.proc   IRQHandler
+        ; code
+        rti
+.endproc
