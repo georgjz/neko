@@ -15,6 +15,8 @@
 ;   Description: This a header file for SNESInitialization.s, include this
 ;   to use the subroutines in afore mentioned file
 ;
+.ifndef SNESINITIALIZATION_INC
+.define SNESINITIALIZATION_INC
 
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file
@@ -24,3 +26,5 @@
 .import     ClearCGRAM          ; Clear CG-RAM to $00 (black)
 .import     ClearOAMRAM         ; Clear OAM-RAM to $ff (all sprites off screen)
 ;-------------------------------------------------------------------------------
+
+.endif  ; SNESINITIALIZATION_INC

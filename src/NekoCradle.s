@@ -13,6 +13,7 @@
 
 .include "SNESRegisters.inc"
 .include "SNESInitialization.inc"
+.include "CPUMacros.inc"
 ; ca65 Assembler Directives
 .p816
 .i16
@@ -33,9 +34,20 @@
 ; set A to 8 bit
 ; set up Stack
 ; force blanking
-
-        clc                         ; set to native mode
+        sei                     ; disable interrupts
+        clc                     ; set to native mode
         xce
+        SetXY16
+        SetA8
+        ldx #$1fff              ; set up stack
+        txs
+        lda #$8f                ; force v-blanking
+        sta INIDISP
+        jsl ClearRegisters
+        jsl ClearVRAM
+        jsl ClearCGRAM
+        jsl ClearOAMRAM
+
         jml GameLoop
 .endproc
 
@@ -43,7 +55,7 @@ GameLoop:
         wai
         jmp GameLoop
 
-.proc   NMIHanler
+.proc   NMIHandler
         lda RDNMI                   ; read NMI status
         rti
 .endproc

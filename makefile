@@ -7,7 +7,7 @@ endif
 
 # Assembler and linker
 AS 		= ca65
-ASFLAGS	= -I $(SRCDIR)/$(INCDIR) -s --cpu 65816
+ASFLAGS	= -I $(SRCDIR)/$(INCDIR) --cpu 65816
 LD		= ld65
 LDFLAGS = -C MemoryMap.cfg
 

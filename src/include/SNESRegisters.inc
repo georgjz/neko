@@ -17,6 +17,7 @@
 ;
 .ifndef SNESREGISTERS_INC
 .define SNESREGISTERS_INC
+
 ;-------------------------------------------------------------------------------
 ;   PPU Registers
 ;-------------------------------------------------------------------------------
@@ -41,7 +42,7 @@
     BG3VOFS     := $2112    ; BG3 Vertical   Scroll (Y)
     BG4HOFS     := $2113    ; BG4 Horizontal Scroll (X)
     BG4VOFS     := $2114    ; BG4 Vertical   Scroll (Y)
-    VMAIN       := $2115    ; VRAM Address Increment Mode
+    VMAINC      := $2115    ; VRAM Address Increment Mode
     VMADDL      := $2116    ; VRAM Address, lower byte
     VMADDH      := $2117    ; VRAM Address, higher byte
     VMDATAL     := $2118    ; VRAM Data Write, lower byte
@@ -142,7 +143,7 @@
     A1T0B       := $4304    ; DMA0 DMA/HDMA Table Start Address (Bank)
     DAS0L       := $4305    ; DMA0 DMA Count, lower byte
     DAS0H       := $4306    ; DMA0 DMA Count, higher byte
-    DASB0       := $4307    ; DMA0 Indirect HDMA Address (Bank)
+    DAS0B       := $4307    ; DMA0 Indirect HDMA Address (Bank)
     A2A0L       := $4308    ; DMA0 HDMA Table Address, lower byte
     A2A0H       := $4309    ; DMA0 HDMA Table Address, higher byte
     NTRL0       := $430A    ; DMA0 HDMA Line-Counter
@@ -154,7 +155,7 @@
     A1T1B       := $4314    ; DMA1 DMA/HDMA Table Start Address (Bank)
     DAS1L       := $4315    ; DMA1 DMA Count, lower byte
     DAS1H       := $4316    ; DMA1 DMA Count, higher byte
-    DASB1       := $4317    ; DMA1 Indirect HDMA Address (Bank)
+    DAS1B       := $4317    ; DMA1 Indirect HDMA Address (Bank)
     A2A1L       := $4318    ; DMA1 HDMA Table Address, lower byte
     A2A1H       := $4319    ; DMA1 HDMA Table Address, higher byte
     NTRL1       := $431A    ; DMA1 HDMA Line-Counter
@@ -166,7 +167,7 @@
     A1T2B       := $4324    ; DMA2 DMA/HDMA Table Start Address (Bank)
     DAS2L       := $4325    ; DMA2 DMA Count, lower byte
     DAS2H       := $4326    ; DMA2 DMA Count, higher byte
-    DASB2       := $4327    ; DMA2 Indirect HDMA Address (Bank)
+    DAS2B       := $4327    ; DMA2 Indirect HDMA Address (Bank)
     A2A2L       := $4328    ; DMA2 HDMA Table Address, lower byte
     A2A2H       := $4329    ; DMA2 HDMA Table Address, higher byte
     NTRL2       := $432A    ; DMA2 HDMA Line-Counter
@@ -178,7 +179,7 @@
     A1T3B       := $4334    ; DMA3 DMA/HDMA Table Start Address (Bank)
     DAS3L       := $4335    ; DMA3 DMA Count, lower byte
     DAS3H       := $4336    ; DMA3 DMA Count, higher byte
-    DASB3       := $4337    ; DMA3 Indirect HDMA Address (Bank)
+    DAS3B       := $4337    ; DMA3 Indirect HDMA Address (Bank)
     A2A3L       := $4338    ; DMA3 HDMA Table Address, lower byte
     A2A3H       := $4339    ; DMA3 HDMA Table Address, higher byte
     NTRL3       := $433A    ; DMA3 HDMA Line-Counter
@@ -190,7 +191,7 @@
     A1T4B       := $4344    ; DMA4 DMA/HDMA Table Start Address (Bank)
     DAS4L       := $4345    ; DMA4 DMA Count, lower byte
     DAS4H       := $4346    ; DMA4 DMA Count, higher byte
-    DASB4       := $4347    ; DMA4 Indirect HDMA Address (Bank)
+    DAS4B       := $4347    ; DMA4 Indirect HDMA Address (Bank)
     A2A4L       := $4348    ; DMA4 HDMA Table Address, lower byte
     A2A4H       := $4349    ; DMA4 HDMA Table Address, higher byte
     NTRL4       := $434A    ; DMA4 HDMA Line-Counter
@@ -202,7 +203,7 @@
     A1T5B       := $4354    ; DMA5 DMA/HDMA Table Start Address (Bank)
     DAS5L       := $4355    ; DMA5 DMA Count, lower byte
     DAS5H       := $4356    ; DMA5 DMA Count, higher byte
-    DASB5       := $4357    ; DMA5 Indirect HDMA Address (Bank)
+    DAS5B       := $4357    ; DMA5 Indirect HDMA Address (Bank)
     A2A5L       := $4358    ; DMA5 HDMA Table Address, lower byte
     A2A5H       := $4359    ; DMA5 HDMA Table Address, higher byte
     NTRL5       := $435A    ; DMA5 HDMA Line-Counter
@@ -214,7 +215,7 @@
     A1T6B       := $4364    ; DMA6 DMA/HDMA Table Start Address (Bank)
     DAS6L       := $4365    ; DMA6 DMA Count, lower byte
     DAS6H       := $4366    ; DMA6 DMA Count, higher byte
-    DASB6       := $4367    ; DMA6 Indirect HDMA Address (Bank)
+    DAS6B       := $4367    ; DMA6 Indirect HDMA Address (Bank)
     A2A6L       := $4368    ; DMA6 HDMA Table Address, lower byte
     A2A6H       := $4369    ; DMA6 HDMA Table Address, higher byte
     NTRL6       := $436A    ; DMA6 HDMA Line-Counter
@@ -226,7 +227,7 @@
     A1T7B       := $4374    ; DMA7 DMA/HDMA Table Start Address (Bank)
     DAS7L       := $4375    ; DMA7 DMA Count, lower byte
     DAS7H       := $4376    ; DMA7 DMA Count, higher byte
-    DASB7       := $4377    ; DMA7 Indirect HDMA Address (Bank)
+    DAS7B       := $4377    ; DMA7 Indirect HDMA Address (Bank)
     A2A7L       := $4378    ; DMA7 HDMA Table Address, lower byte
     A2A7H       := $4379    ; DMA7 HDMA Table Address, higher byte
     NTRL7       := $437A    ; DMA7 HDMA Line-Counter
