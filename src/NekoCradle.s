@@ -49,14 +49,16 @@
 
         ; test LoadTileSet
 ChessTileSet := $018000
-        pea $2000              ; size
-        lda #$00                ; destination
+        lda #$00                ; size bank
         pha
-        lda #<ChessTileSet      ; low source
+        pea $2000               ; size
+        lda #$01                ; destination
+        pha
+        lda #^ChessTileSet      ; bank source
         pha
         lda #>ChessTileSet      ; middle source
         pha
-        lda #^ChessTileSet      ; high source
+        lda #<ChessTileSet      ; low source
         pha
         jsl LoadTileSet
 
