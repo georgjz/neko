@@ -40,7 +40,15 @@
 ;   Description: mumu
 ;-------------------------------------------------------------------------------
 .proc   LoadTileSet
+        PreserveRegisters       ; preserve working registers
+        phd                     ; preserve callers frame pointer 
+        tsc                     ; make own frame pointer in D
+        tcd
+
         ; code
+
+        pld                     ; restore callers frame pointer
+        RestoreRegisters        ; restore working registers
         rtl
 .endproc
 ;----- end of subroutine LoadTileSet -------------------------------------------

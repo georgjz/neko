@@ -52,11 +52,9 @@
         pha                     ; preserve working registers
         phx
         phy
-        php
 .endmacro
 
 .macro  RestoreRegisters
-        plp 
         ply                     ; restore working registers
         plx
         pla
