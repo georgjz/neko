@@ -11,6 +11,7 @@
 ; all copies or substantial portions of the Software.
 ;
 
+.include "MemoryUtils.inc"
 .include "SNESRegisters.inc"
 .include "SNESInitialization.inc"
 .include "CPUMacros.inc"
@@ -32,11 +33,6 @@
 ;   This is the entry point of the cradle
 ;-------------------------------------------------------------------------------
 .proc   ResetHandler
-; diable Interrupts
-; set to native mode
-; set A to 8 bit
-; set up Stack
-; force blanking
         sei                     ; disable interrupts
         clc                     ; set to native mode
         xce
@@ -50,6 +46,21 @@
         jsl ClearVRAM
         jsl ClearCGRAM
         jsl ClearOAMRAM
+
+        ; test LoadTileSet
+ChessTileSet := $018000
+        pea $2000              ; size
+        lda #$00                ; destination
+        pha
+        lda #<ChessTileSet      ; low source
+        pha
+        lda #>ChessTileSet      ; middle source
+        pha
+        lda #^ChessTileSet      ; high source
+        pha
+        jsl LoadTileSet
+
+        nop                     ; break point for debugger
 
         jml GameLoop
 .endproc
@@ -81,3 +92,8 @@
         rti
 .endproc
 ;-------------------------------------------------------------------------------
+
+; Graphics!
+.segment "TILEDATA"
+; ChessTileSet:
+.incbin "tiledata/ChessTileSet.bin"

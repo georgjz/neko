@@ -36,16 +36,51 @@
 .segment "CODE"
 ;-------------------------------------------------------------------------------
 ;   Subroutine: LoadTileSet
-;   Parameters: Source: .faraddr, Destination: .byte
+;   Parameters: Source: .faraddr, Destination: .byte, Size: .faraddr
 ;   Description: mumu
 ;-------------------------------------------------------------------------------
 .proc   LoadTileSet
         PreserveRegisters       ; preserve working registers
-        phd                     ; preserve callers frame pointer 
+        phd                     ; preserve callers frame pointer
         tsc                     ; make own frame pointer in D
         tcd
+        FrameOffset = $0c       ; set frame offset to 12
+        ldx #$0000              ; X is used as argument offset
 
-        ; code
+        ; set DMA source address to Source
+        lda FrameOffset, x      ; get Source address bank
+        sta A1T0B
+        inx                     ; get next argument
+        ldy FrameOffset, x      ; get Source address
+        sty A1T0H               ; set DMA source address
+        lda #$19                ; set B bus destination to VRDATAH
+        sta BBAD0
+
+        ; set VRAM registers to Destination
+        inx                     ; get next argument
+        inx
+        lda FrameOffset, x      ; get Destination byte
+        ;and #$0f                ; delete high nibble
+        asl                     ; move lower nibble into higher nibble
+        asl
+        asl
+        asl
+        stz VMADDL              ; set VRAM address to $n000
+        sta VMADDH
+
+        ; set DMA transfer number to Size
+        inx                     ; get next argument
+        lda FrameOffset, x      ; load Size high byte
+        sta DAS0B               ; set number of bytes to transfer to Size
+        inx
+        ldy FrameOffset, x      ; get middle and low byte of Size
+        sty DAS0L
+
+        ; set DMA channel 0 parameters and start transfer
+        lda #$02                ; 2-address(L,H) write, auto increment
+        sta DMAP0
+        lda #$01                ; start transfer
+        sta MDMAEN
 
         pld                     ; restore callers frame pointer
         RestoreRegisters        ; restore working registers

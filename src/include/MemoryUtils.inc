@@ -21,10 +21,7 @@
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file
 ;-------------------------------------------------------------------------------
-.import     ClearRegisters      ; Clear all PPU and CPU registers of the SNES
-.import     ClearVRAM           ; Clear the complete VRAM to $00
-.import     ClearCGRAM          ; Clear CG-RAM to $00 (black)
-.import     ClearOAMRAM         ; Clear OAM-RAM to $ff (all sprites off screen)
+.import     LoadTileSet         ; Loads a tile set into VRAM
 ;-------------------------------------------------------------------------------
 
 .endif  ; MEMORYUTILS_INC
