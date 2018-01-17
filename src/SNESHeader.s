@@ -24,7 +24,9 @@
 .import     IRQHandler          ; IRQ is not used in this project
 ;-------------------------------------------------------------------------------
 
-; ROM Register Data are stored in $00:ffb0 through $00:ffdf, 48/$30 bytes
+;-------------------------------------------------------------------------------
+;   ROM Register Data are stored in $00:ffb0 through $00:ffdf, 48/$30 bytes
+;-------------------------------------------------------------------------------
 .segment "HEADER"
 .byte   "GZ"                    ; Maker Code, I use my initals
 .byte   "NEKO"                  ; Game Code
@@ -45,7 +47,9 @@
 .word   $aaaa                   ; Complement Check
 .word   $5555                   ; Check Sum, hope to write a script to automate this
 
-; Interrupt and Reset vectors for the 65816 CPU
+;-------------------------------------------------------------------------------
+;   Interrupt and Reset vectors for the 65816 CPU
+;-------------------------------------------------------------------------------
 .segment "VECTOR"
 ; native mode   COP,        BRK,        ABT,
 .addr           CopHandler, BrkHandler, AbtHandler
@@ -59,6 +63,9 @@
 ;               NMI,        RST,        IRQ
 .addr           eNMIHandler,ResetStub,  eIRQHandler
 
+;-------------------------------------------------------------------------------
+;   Stubs for the vectors 
+;-------------------------------------------------------------------------------
 .segment "CODE"
 ; These stubs make sure that the Reset, NMI, and IRQ handlers are found even
 ; if they are located in another bank than $00/$80
@@ -80,4 +87,4 @@ eBrkHandler:
 eAbtHandler:
 eNMIHandler:
 eIRQHandler:
-    rti 
+    rti
