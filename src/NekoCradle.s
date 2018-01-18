@@ -42,6 +42,7 @@
         txs
         lda #$8f                ; force v-blanking
         sta INIDISP
+        stz NMITIMEN            ; disable NMI
         jsl ClearRegisters
         jsl ClearVRAM
         jsl ClearCGRAM
@@ -52,7 +53,7 @@
         lda #$00                ; size bank
         pha
         pea $2000               ; size
-        lda #$01                ; destination
+        lda #$01                ; word destination segment << 4
         pha
         lda #^ChessTileSet      ; bank source
         pha
@@ -66,7 +67,7 @@
 
         ; load palette
         tsx                     ; save stack pointer
-        ldy #$0b                ; size: 12 bytes
+        ldy #$0c                ; size: 12 bytes
         phy
         lda #$00                ; destination: $00
         pha
@@ -78,7 +79,41 @@
         pha
         jsl LoadPalette
         txs                     ; restore stack pointer
+        ; palette loaded
 
+        ; load tile map into VRAM
+        tsx                     ; save stack pointer
+        lda #$00                ; size: $00:0800
+        pha
+        pea $0800
+        pha                     ; word destination segment << 2
+        lda #^ChessTileMap      ; source address
+        pha
+        lda #>ChessTileMap
+        pha
+        lda #<ChessTileMap
+        pha
+        jsl LoadTileMap
+        txs                     ; restore pointer
+
+        ; set to BG Mode 1, BG2 to 16 x 16
+        lda #$21
+        sta BGMODE
+        ; set BG2 base address to $1000-word
+        lda #$10                ; set BG2 Base Address
+        sta BG12NBA
+        ; set BG2 sc address to VRAM address
+        lda #$00
+        sta BG2SC
+        ; make BG2 visible
+        lda #$02
+        sta TM
+        ; enable NMI, turn on screen
+        lda #$81
+        sta NMITIMEN
+        ; release forced blanking
+        lda #$0f
+        sta INIDISP
 
         nop                     ; break point for debugger
 
@@ -119,3 +154,5 @@ ChessTileSet:
 .incbin "tiledata/ChessTileSet.bin"
 ChessPalette:
 .incbin "tiledata/ChessPalette.pal"
+ChessTileMap:
+.incbin "tiledata/ChessTileMap.map"

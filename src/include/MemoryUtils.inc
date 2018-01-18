@@ -23,6 +23,7 @@
 ;-------------------------------------------------------------------------------
 .import     LoadTileSet         ; Load a tile set into VRAM
 .import     LoadPalette         ; Load palette data into CG-RAM
+.import     LoadTileMap         ; Load a tile map into VRAM
 ;-------------------------------------------------------------------------------
 
 .endif  ; MEMORYUTILS_INC

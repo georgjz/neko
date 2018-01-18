@@ -32,12 +32,13 @@
 ;-------------------------------------------------------------------------------
 .export     LoadTileSet         ; Load a tile set into VRAM
 .export     LoadPalette         ; Load palette data into CG-RAM
+.export     LoadTileMap         ; Load a tile map into VRAM
 ;-------------------------------------------------------------------------------
 
 .segment "CODE"
 ;-------------------------------------------------------------------------------
 ;   Subroutine: LoadTileSet
-;   Parameters: Source: .faraddr, Destination: .byte, Size: .faraddr
+;   Parameters: Source: .faraddr, Destination Segment: .byte, Size: .faraddr
 ;   Description: mumu
 ;-------------------------------------------------------------------------------
 .proc   LoadTileSet
@@ -58,9 +59,9 @@
         lda #$18                ; set B bus destination to VMDATAL
         sta BBAD0
 
-        ; set VRAM registers to Destination
+        ; set VRAM registers to Destination Segment
         inx                     ; get next argument
-        lda FrameOffset, x      ; get Destination byte
+        lda FrameOffset, x      ; get Destination Segment byte
         asl                     ; move lower nibble into higher nibble
         asl
         asl
@@ -131,7 +132,61 @@
         lda #$01                ; start transfer
         sta MDMAEN
 
+        pld                     ; restore callers frame pointer
         RestoreRegisters        ; restore working registers
         rtl
 .endproc
 ;----- end of subroutine LoadPalette -------------------------------------------
+
+;-------------------------------------------------------------------------------
+;   Subroutine: LoadTileMap
+;   Parameters: Source: .faraddr, Destination Segment: .byte, Size: .word
+;   Description: mumu
+;-------------------------------------------------------------------------------
+.proc   LoadTileMap
+        PreserveRegisters       ; preserve working registers
+        phd                     ; preserve callers frame pointer
+        tsc                     ; make own frame pointer in D
+        tcd
+        FrameOffset = $0b       ; set frame offset to 11: 10 bytes on stack + 1 offset
+        ldx #$0000              ; X is used as argument offset
+
+        ; set DMA source address to Source
+        ldy FrameOffset, x      ; get Source address
+        sty A1T0L               ; set DMA source to Source
+        inx
+        inx
+        lda FrameOffset, x      ; get Source bank
+        sta A1T0B               ; set DMA source bank to Source Bank
+        lda #$18                ; set B bus destination to VMDATAL
+        sta BBAD0
+
+        ; set VRAM registers to Destination Segment
+        inx                     ; get next argument
+        lda FrameOffset, x      ; get Destination Segment byte
+        asl                     ; move lower nibble into higher nibble
+        asl
+        stz VMADDL              ; set VRAM address to $nn00
+        sta VMADDH
+        lda #$80                ; VRAM address increment to 1 word
+        sta VMAINC
+
+        ; set DMA transfer number to Size
+        inx                     ; get next argument
+        ldy FrameOffset, x      ; get low and middle byte of Size
+        sty DAS0L
+        inx
+        inx
+        lda FrameOffset, x
+        sta DAS0B
+
+        ; set DMA channel 0 parameters and start transfer
+        lda #$01                ; 2-address(L,H) write, auto increment
+        sta DMAP0
+        sta MDMAEN              ; start transfer
+
+        pld                     ; restore callers frame pointer
+        RestoreRegisters        ; restore working registers
+        rtl
+.endproc
+;----- end of subroutine LoadTileMap -------------------------------------------
