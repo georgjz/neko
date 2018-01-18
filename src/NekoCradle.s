@@ -47,8 +47,8 @@
         jsl ClearCGRAM
         jsl ClearOAMRAM
 
-        ; test LoadTileSet
-ChessTileSet := $018000
+        ; Load Chess Tile Set
+        tsx                     ; save stack pointer
         lda #$00                ; size bank
         pha
         pea $2000               ; size
@@ -61,6 +61,24 @@ ChessTileSet := $018000
         lda #<ChessTileSet      ; low source
         pha
         jsl LoadTileSet
+        txs                     ; restore stack pointer to pre-call value
+        ; Chess Tile Set loaded
+
+        ; load palette
+        tsx                     ; save stack pointer
+        ldy #$0b                ; size: 12 bytes
+        phy
+        lda #$00                ; destination: $00
+        pha
+        lda #^ChessPalette      ; source: ChessPalette
+        pha
+        lda #>ChessPalette
+        pha
+        lda #<ChessPalette
+        pha
+        jsl LoadPalette
+        txs                     ; restore stack pointer
+
 
         nop                     ; break point for debugger
 
@@ -97,5 +115,7 @@ ChessTileSet := $018000
 
 ; Graphics!
 .segment "TILEDATA"
-; ChessTileSet:
+ChessTileSet:
 .incbin "tiledata/ChessTileSet.bin"
+ChessPalette:
+.incbin "tiledata/ChessPalette.pal"

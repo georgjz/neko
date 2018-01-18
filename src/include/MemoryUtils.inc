@@ -21,7 +21,8 @@
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file
 ;-------------------------------------------------------------------------------
-.import     LoadTileSet         ; Loads a tile set into VRAM
+.import     LoadTileSet         ; Load a tile set into VRAM
+.import     LoadPalette         ; Load palette data into CG-RAM
 ;-------------------------------------------------------------------------------
 
 .endif  ; MEMORYUTILS_INC

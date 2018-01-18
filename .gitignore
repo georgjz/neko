@@ -28,7 +28,7 @@
 *.bmp
 *.png
 *.jpg
-*.pal
+# *.pal
 
 # Build results
 [Bb]uild/

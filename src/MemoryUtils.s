@@ -13,7 +13,7 @@
 ;   File: MemoryUtils.s
 ;   Author(s): Georg Ziegler
 ;   Description: This file contains subroutines to move data into the
-;   PPUs RAM spaces
+;   PPUs VRAM, CG-RAM and OAM-RAM spaces
 ;
 
 ;----- Includes ----------------------------------------------------------------
@@ -30,7 +30,8 @@
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file
 ;-------------------------------------------------------------------------------
-.export     LoadTileSet         ; Loads a tile set into VRAM
+.export     LoadTileSet         ; Load a tile set into VRAM
+.export     LoadPalette         ; Load palette data into CG-RAM
 ;-------------------------------------------------------------------------------
 
 .segment "CODE"
@@ -44,7 +45,7 @@
         phd                     ; preserve callers frame pointer
         tsc                     ; make own frame pointer in D
         tcd
-        FrameOffset = $0b       ; set frame offset to 12
+        FrameOffset = $0b       ; set frame offset to 11: 10 bytes on stack + 1 offset
         ldx #$0000              ; X is used as argument offset
 
         ; set DMA source address to Source
@@ -56,18 +57,10 @@
         sta A1T0B               ; set DMA source bank to Source Bank
         lda #$18                ; set B bus destination to VMDATAL
         sta BBAD0
-        ; lda FrameOffset, x      ; get Source address bank
-        ; sta A1T0B
-        ; inx                     ; get next argument
-        ; ldy FrameOffset, x      ; get Source address
-        ; sty A1T0H               ; set DMA source address
-        ; lda #$19                ; set B bus destination to VRDATAH
-        ; sta BBAD0
 
         ; set VRAM registers to Destination
         inx                     ; get next argument
         lda FrameOffset, x      ; get Destination byte
-        ;and #$0f                ; delete high nibble
         asl                     ; move lower nibble into higher nibble
         asl
         asl
@@ -85,21 +78,60 @@
         inx
         lda FrameOffset, x
         sta DAS0B
-        ; inx                     ; get next argument
-        ; lda FrameOffset, x      ; load Size high byte
-        ; sta DAS0B               ; set number of bytes to transfer to Size
-        ; inx
-        ; ldy FrameOffset, x      ; get middle and low byte of Size
-        ; sty DAS0L
 
         ; set DMA channel 0 parameters and start transfer
         lda #$01                ; 2-address(L,H) write, auto increment
         sta DMAP0
-        lda #$01                ; start transfer
-        sta MDMAEN
+        sta MDMAEN              ; start transfer
 
         pld                     ; restore callers frame pointer
         RestoreRegisters        ; restore working registers
         rtl
 .endproc
 ;----- end of subroutine LoadTileSet -------------------------------------------
+
+;-------------------------------------------------------------------------------
+;   Subroutine: LoadPalette
+;   Parameters: Source: .faraddr, Destination: .byte, Size: .word
+;   Description: mumu
+;-------------------------------------------------------------------------------
+.proc   LoadPalette
+        PreserveRegisters       ; preserve working registers
+        phd                     ; preserve caller's frame pointer
+        tsc                     ; make D own frame pointer
+        tcd
+        FrameOffset = $0b       ; set frame offset to 11: 10 bytes on stack + 1 offset
+        ldx #$0000              ; X is used as argument offset
+
+        ; set DMA channel 0 source address to Source
+        ldy FrameOffset, x      ; get middle and low byte of Source
+        sty A1T0L               ; set DMA A-Bus address to Source
+        inx
+        inx
+        lda FrameOffset, x      ; get bank of Source
+        sta A1T0B               ; set DMA A-Bus address to Source
+
+        ; set CG-RAM registers
+        inx                     ; get next argument
+        lda FrameOffset, x
+        sta CGADD               ; set CG address to Destination
+        lda #$22                ; set DMA B-Bus address to CGDATA
+        sta BBAD0
+
+        ; set DMA transfer number
+        inx                     ; get next argument
+        lda FrameOffset, x
+        sta DAS0L
+        stz DAS0H
+        stz DAS0B
+
+        ; set DMA channel 0 parameters, start transfer
+        lda #$02                ; 1-address written twice, auto increment
+        sta DMAP0
+        lda #$01                ; start transfer
+        sta MDMAEN
+
+        RestoreRegisters        ; restore working registers
+        rtl
+.endproc
+;----- end of subroutine LoadPalette -------------------------------------------
