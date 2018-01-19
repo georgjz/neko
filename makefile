@@ -5,21 +5,32 @@ ifneq ($(BUILD),debug)
     BUILD = release
 endif
 
-# Assembler and linker
+# Assembler and Linker
 AS 		= ca65
-ASFLAGS	= -I $(SRCDIR)/$(INCDIR) --cpu 65816
+ASFLAGS	= --cpu 65816 $(INCARGS)
 LD		= ld65
-LDFLAGS = -C MemoryMap.cfg
+LDFLAGS = -C MemoryMap.cfg --obj-path $(OBJDIR)/
 
 # Directories
 SRCDIR	 = src
 OBJDIR	 = obj
-INCDIR	 = include
 BUILDDIR = build/$(BUILD)
 
+# Make does not offer a recursive wildcard function, so here's one:
+rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
+
+# Generate include directories list
+INCLUDES := $(call rwildcard,$(SRCDIR)/,*.inc)
+INCDIRS	 := $(sort $(dir $(INCLUDES)))
+INCARGS  := $(foreach inc, $(INCDIRS),-I $(inc))
+
 # Sources
-SOURCES = $(shell find $(SRCDIR)/ -maxdepth 2 -name '*.s' -printf '%f\n')
-OBJECTS	= $(patsubst %.s, $(OBJDIR)/%.o, $(SOURCES))
+SOURCES	:= $(call rwildcard,$(SRCDIR)/,*.s)	# list all source files
+SSRC	:= $(notdir $(SOURCES))				# remove file paths
+SOBJ	:= $(patsubst %.s, $(OBJDIR)/%.o, $(SSRC))
+vpath %.s $(dir $(SOURCES))					# add source directories to vpath
+
+# Recipes
 EXECUTABLE = $(BUILDDIR)/NekoCradle.smc
 
 all: dir $(EXECUTABLE)
@@ -27,15 +38,15 @@ all: dir $(EXECUTABLE)
 debug: $(ASFLAGS) += -g
 debug: dir $(EXECUTABLE)
 
-$(EXECUTABLE): $(OBJECTS)
-	$(LD) $(LDFLAGS) $^ -o $@
+$(EXECUTABLE): $(SOBJ)
+	$(LD) $(LDFLAGS) -o $@ $^
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.s
+$(OBJDIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
 
 .PHONY: clean
 clean:
-	@rm -f $(OBJECTS)
+	@rm -f $(OBJDIR)/*.o
 	@rm -f $(EXECUTABLE)
 
 dir:
