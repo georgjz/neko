@@ -13,7 +13,7 @@ music functionality whatsoever.
 
 ## A word on the subroutines and passing arguments
 Unlike most other projects the arguments for the subroutines for
-loading VRAM, etc. will be passed by stack, not by register. This is a
+loading VRAM, etc. will are passed by stack, not by register. This is a
 deliberate design choice to ensure that call stacks with varying depths
 work without loss of (register) data. It will also make the subroutines
 re-entrant and eliminates the need to keep (intermittent) variables for a given
