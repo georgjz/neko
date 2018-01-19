@@ -39,7 +39,7 @@
 ;-------------------------------------------------------------------------------
 ;   Subroutine: LoadTileSet
 ;   Parameters: Source: .faraddr, Destination Segment: .byte, Size: .faraddr
-;   Description: mumu
+;   Description: Load a tile set into VRAM and Place it in Destination Segment
 ;-------------------------------------------------------------------------------
 .proc   LoadTileSet
         PreserveRegisters       ; preserve working registers
@@ -94,7 +94,7 @@
 ;-------------------------------------------------------------------------------
 ;   Subroutine: LoadPalette
 ;   Parameters: Source: .faraddr, Destination: .byte, Size: .word
-;   Description: mumu
+;   Description: Load palette data into CG-RAM
 ;-------------------------------------------------------------------------------
 .proc   LoadPalette
         PreserveRegisters       ; preserve working registers
@@ -141,7 +141,7 @@
 ;-------------------------------------------------------------------------------
 ;   Subroutine: LoadTileMap
 ;   Parameters: Source: .faraddr, Destination Segment: .byte, Size: .word
-;   Description: mumu
+;   Description: Load a tile map into VRAM and plac it in Destination Segment 
 ;-------------------------------------------------------------------------------
 .proc   LoadTileMap
         PreserveRegisters       ; preserve working registers

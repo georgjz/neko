@@ -11,14 +11,20 @@
 ; all copies or substantial portions of the Software.
 ;
 
+;----- Includes ----------------------------------------------------------------
 .include "MemoryUtils.inc"
+.include "InputUtils.inc"
 .include "SNESRegisters.inc"
 .include "SNESInitialization.inc"
 .include "CPUMacros.inc"
-; ca65 Assembler Directives
+.include "WRAMPointers.inc"
+;-------------------------------------------------------------------------------
+
+;----- Assembler Directives ----------------------------------------------------
 .p816
 .i16
 .a8
+;-------------------------------------------------------------------------------
 
 ;-------------------------------------------------------------------------------
 ;   Exports of subroutines for use in other files
@@ -96,6 +102,10 @@
         jsl LoadTileMap
         txs                     ; restore pointer
 
+        ; ; ZP Test
+        ; ldx #$1357
+        ; stx Cont1Raw
+
         ; set to BG Mode 1, BG2 to 16 x 16
         lda #$21
         sta BGMODE
@@ -108,7 +118,7 @@
         ; make BG2 visible
         lda #$02
         sta TM
-        ; enable NMI, turn on screen
+        ; enable NMI, turn on automatic joypad polling
         lda #$81
         sta NMITIMEN
         ; release forced blanking
@@ -125,7 +135,8 @@
 ;   After the ResetHandler will jump to here
 ;-------------------------------------------------------------------------------
 .proc   GameLoop
-        wai
+        wai                     ; wait for NMI / V-Blank
+        ; react to Input
         jmp GameLoop
 .endproc
 ;-------------------------------------------------------------------------------
@@ -135,6 +146,9 @@
 ;-------------------------------------------------------------------------------
 .proc   NMIHandler
         lda RDNMI                   ; read NMI status
+        ; read input
+        jsl PollJoypad1
+
         rti
 .endproc
 ;-------------------------------------------------------------------------------
