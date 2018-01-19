@@ -26,6 +26,8 @@
 .export     Joy2Raw             ; Buttons pressed last frame
 .export     Joy2Trig            ; Buttons pressed this frame
 .export     Joy2Held            ; Buttons held from last frame
+.export     BG2HScrollOffset
+.export     BG2VScrollOffset
 ;-------------------------------------------------------------------------------
 
 .segment "WRAMPAGE"
@@ -38,4 +40,11 @@
     Joy2Raw:   .res    2        ; Buttons pressed last frame
     Joy2Trig:  .res    2        ; Buttons pressed this frame
     Joy2Held:  .res    2        ; Buttons held from last frame
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+;   Variables
+;-------------------------------------------------------------------------------
+    BG2HScrollOffset:  .res    2
+    BG2VScrollOffset:  .res    2
 ;-------------------------------------------------------------------------------

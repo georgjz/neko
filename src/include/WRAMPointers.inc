@@ -27,6 +27,8 @@
 .import     Joy2Raw             ; Buttons pressed last frame
 .import     Joy2Trig            ; Buttons pressed this frame
 .import     Joy2Held            ; Buttons held from last frame
+.import     BG2HScrollOffset
+.import     BG2VScrollOffset 
 ;-------------------------------------------------------------------------------
 
 .endif  ; WRAMPOINTERS_INC
