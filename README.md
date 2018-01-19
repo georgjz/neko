@@ -31,7 +31,7 @@ from right to left on the stack.*
 ## Sample Code
 In `src/NekoCradle.s` you will find a sample program, that will load a tileset
 and corresponding tilemap into VRAM. The graphics are stored in `src/tiledata`.
-You can scroll around the screen withthe Dpad of controller 1. The corners of
+You can scroll around the screen with the DPad of controller 1. The corners of
 the scroll area are marked with white tiles. Again, this code is not geared
 towards speed but readability and understanding, since this is also a
 learning project for me.
