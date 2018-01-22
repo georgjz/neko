@@ -14,6 +14,7 @@
 ;----- Includes ----------------------------------------------------------------
 .include "MemoryUtils.inc"
 .include "InputUtils.inc"
+.include "GameObject.inc"
 .include "SNESRegisters.inc"
 .include "SNESInitialization.inc"
 .include "CPUMacros.inc"
