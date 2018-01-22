@@ -19,6 +19,7 @@
 .include "SNESInitialization.inc"
 .include "CPUMacros.inc"
 .include "WRAMPointers.inc"
+.include "TileData.inc"
 ;-------------------------------------------------------------------------------
 
 ;----- Assembler Directives ----------------------------------------------------
@@ -220,9 +221,3 @@ Done:   ; store new offsets
         rti
 .endproc
 ;-------------------------------------------------------------------------------
-
-; Graphics!
-.segment "TILEDATA"
-ChessTileSet:   .incbin "tiledata/ChessTileSet.bin"
-ChessPalette:   .incbin "tiledata/ChessPalette.pal"
-ChessTileMap:   .incbin "tiledata/ChessTileMap.map"

@@ -10,18 +10,20 @@
 ; The above copyright notice and this permission notice shall be included in
 ; all copies or substantial portions of the Software.
 ; -----------------------------------------------------------------------------
-;   File: GameObject.inc
+;   File: TileData.inc
 ;   Author(s): Georg Ziegler
-;   Description: This a header file for GameObject.s, include this
-;   to use the subroutines and structs in afore mentioned file
+;   Description: This file is a header, include it to access graphic data
 ;
-.ifndef GAMEOBJECT_INC
-.define GAMEOBJECT_INC
+
+.ifndef TILEDATA_INC
+.define TILEDATA_INC
 
 ;-------------------------------------------------------------------------------
-;   Routines found in this file
+;   Graphic Addresses
 ;-------------------------------------------------------------------------------
-.import     GameObject          ; Struct that represents a game object  
+.import     ChessTileSet
+.import     ChessPalette
+.import     ChessTileMap
 ;-------------------------------------------------------------------------------
 
-.endif  ; GAMEOBJECT_INC
+.endif  ; TILEDATA_INC

@@ -10,16 +10,10 @@
 ; The above copyright notice and this permission notice shall be included in
 ; all copies or substantial portions of the Software.
 ; -----------------------------------------------------------------------------
-;   File: GameObject.s
+;   File: TileData.s
 ;   Author(s): Georg Ziegler
-;   Description: This file contains subroutines to handle game sprite objects
+;   Description: This file places the graphics in the ROM
 ;
-
-;----- Includes ----------------------------------------------------------------
-.include "SNESRegisters.inc"
-.include "CPUMacros.inc"
-.include "WRAMPointers.inc"
-;-------------------------------------------------------------------------------
 
 ;----- Assembler Directives ----------------------------------------------------
 .p816
@@ -28,26 +22,18 @@
 ;-------------------------------------------------------------------------------
 
 ;-------------------------------------------------------------------------------
-;   Routines found in this file
+;   Pointers found in this file
 ;-------------------------------------------------------------------------------
-.export     GameObject          ; A struct that represents a game object
-;-------------------------------------------------------------------------------
-
-;-------------------------------------------------------------------------------
-;   Structs
-;-------------------------------------------------------------------------------
-.struct GameObject
-    XPos    .byte
-    YPos    .byte
-    Heading .byte
-.endstruct
+.export     ChessTileSet
+.export     ChessPalette
+.export     ChessTileMap
 ;-------------------------------------------------------------------------------
 
-.segment "CODE"
+.segment "TILEDATA"
 ;-------------------------------------------------------------------------------
-;   Subroutine: PollJoypad1
-;   Parameters: -
-;   Description: Poll data from Joypad 1 and update pointers
+;   Pointers to graphics in ROM
 ;-------------------------------------------------------------------------------
-
-;----- end of subroutine PollJoyPad2 -------------------------------------------
+ChessTileSet:   .incbin "tiledata/ChessTileSet.bin"
+ChessPalette:   .incbin "tiledata/ChessPalette.pal"
+ChessTileMap:   .incbin "tiledata/ChessTileMap.map"
+;-------------------------------------------------------------------------------

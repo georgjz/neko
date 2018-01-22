@@ -7,7 +7,7 @@ endif
 
 # Assembler and Linker
 AS 		= ca65
-ASFLAGS	= --cpu 65816 $(INCARGS)
+ASFLAGS	= --cpu 65816 -s $(INCARGS)
 LD		= ld65
 LDFLAGS = -C MemoryMap.cfg --obj-path $(OBJDIR)/
 
