@@ -14,7 +14,6 @@
 ;----- Includes ----------------------------------------------------------------
 .include "MemoryUtils.inc"
 .include "InputUtils.inc"
-.include "GameObject.inc"
 .include "SNESRegisters.inc"
 .include "SNESInitialization.inc"
 .include "CPUMacros.inc"
@@ -137,7 +136,6 @@
 ;-------------------------------------------------------------------------------
 ;   After the ResetHandler will jump to here
 ;-------------------------------------------------------------------------------
-.smart ; keep track of registers widths
 .proc   GameLoop
         wai                     ; wait for NMI / V-Blank
 
