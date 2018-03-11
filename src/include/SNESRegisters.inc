@@ -22,7 +22,7 @@
 ;   PPU Registers
 ;-------------------------------------------------------------------------------
     INIDISP     := $2100    ; Display Control 1
-    OBSEL       := $2101    ; Object Size & Object Base
+    OBJSEL      := $2101    ; Object Size & Object Base
     OAMADDL     := $2102    ; OAM Address, lower byte
     OAMADDH     := $2103    ; OAM Address, bit 9 & Priority Rotation
     OAMDATA     := $2104    ; OAM Data Write
