@@ -24,6 +24,8 @@
 .import     ChessTileSet
 .import     ChessPalette
 .import     ChessTileMap
+.import     NekoSpriteSheet
+.import     NekoPalette
 ;-------------------------------------------------------------------------------
 
 .endif  ; TILEDATA_INC

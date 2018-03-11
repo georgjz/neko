@@ -27,6 +27,8 @@
 .export     ChessTileSet
 .export     ChessPalette
 .export     ChessTileMap
+.export     NekoSpriteSheet
+.export     NekoPalette
 ;-------------------------------------------------------------------------------
 
 .segment "TILEDATA"
@@ -36,4 +38,6 @@
 ChessTileSet:   .incbin "tiledata/ChessTileSet.bin"
 ChessPalette:   .incbin "tiledata/ChessPalette.pal"
 ChessTileMap:   .incbin "tiledata/ChessTileMap.map"
+NekoSpriteSheet:.incbin "tiledata/NekoSpriteSheet.bin"
+NekoPalette:    .incbin "tiledata/NekoPalette.pal"
 ;-------------------------------------------------------------------------------

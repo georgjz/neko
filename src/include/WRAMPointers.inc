@@ -27,8 +27,15 @@
 .import     Joy2Raw             ; Buttons pressed last frame
 .import     Joy2Trig            ; Buttons pressed this frame
 .import     Joy2Held            ; Buttons held from last frame
-.import     BG2HScrollOffset
-.import     BG2VScrollOffset
+.import     BG1HOffset          ; Background 1 horizontal offset
+.import     BG1VOffset          ; Background 1 vertical offset
+.import     BG2HOffset          ; Background 2 horizontal offset
+.import     BG2VOffset          ; Background 2 vertical offset
+.import     BG3HOffset          ; Background 3 horizontal offset
+.import     BG3VOffset          ; Background 3 vertical offset;-------------------------------------------------------------------------------
+.import     OAM
+.import     NekoFrameCount
+.import     NekoFrameOffset
 ;-------------------------------------------------------------------------------
 
 .endif  ; WRAMPOINTERS_INC

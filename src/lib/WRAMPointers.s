@@ -26,8 +26,15 @@
 .export     Joy2Raw             ; Buttons pressed last frame
 .export     Joy2Trig            ; Buttons pressed this frame
 .export     Joy2Held            ; Buttons held from last frame
-.export     BG2HScrollOffset
-.export     BG2VScrollOffset
+.export     BG1HOffset          ; Background 1 horizontal offset
+.export     BG1VOffset          ; Background 1 vertical offset
+.export     BG2HOffset          ; Background 2 horizontal offset
+.export     BG2VOffset          ; Background 2 vertical offset
+.export     BG3HOffset          ; Background 3 horizontal offset
+.export     BG3VOffset          ; Background 3 vertical offset;-------------------------------------------------------------------------------
+.export     OAM
+.export     NekoFrameCount
+.export     NekoFrameOffset
 ;-------------------------------------------------------------------------------
 
 .segment "WRAMPAGE"
@@ -43,14 +50,20 @@
 ;-------------------------------------------------------------------------------
 
 ;-------------------------------------------------------------------------------
-;   Pointers
+;   Screen Pointers
 ;-------------------------------------------------------------------------------
-    
+    BG1HOffset: .res    2       ; Background 1 horizontal offset
+    BG1VOffset: .res    2       ; Background 1 vertical offset
+    BG2HOffset: .res    2       ; Background 2 horizontal offset
+    BG2VOffset: .res    2       ; Background 2 vertical offset
+    BG3HOffset: .res    2       ; Background 3 horizontal offset
+    BG3VOffset: .res    2       ; Background 3 vertical offset
 ;-------------------------------------------------------------------------------
 
 ;-------------------------------------------------------------------------------
 ;   Variables
 ;-------------------------------------------------------------------------------
-    BG2HScrollOffset:  .res    2
-    BG2VScrollOffset:  .res    2
+    OAM:            .res    544
+    NekoFrameCount: .res    1
+    NekoFrameOffset:.res    1
 ;-------------------------------------------------------------------------------
