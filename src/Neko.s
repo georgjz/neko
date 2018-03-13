@@ -17,7 +17,6 @@
 ;
 
 ;----- Includes ----------------------------------------------------------------
-.include "MemoryUtils.inc"
 .include "SNESRegisters.inc"
 .include "CPUMacros.inc"
 .include "WRAMPointers.inc"
@@ -37,6 +36,30 @@
 ;-------------------------------------------------------------------------------
 
 .segment "CODE"
+;-------------------------------------------------------------------------------
+;   Reserve RO memory
+;-------------------------------------------------------------------------------
+SnakeWalkNorth:
+    .byte   $00, $02, $04, $02
+SnakeWalkSouth:
+    .byte   $06, $08, $0a, $08
+SnakeWalkWest:
+SnakeWalkEast:
+    .byte   $40, $42, $44, $42
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+;   Constants used in this file
+;-------------------------------------------------------------------------------
+    ; Snake constants
+SnakeFrameHoldLength= $08       ; number of frames an animation should be held
+SnakeWalkSpeed      = $01
+SnakeHPos           = OAM + $00
+SnakeVPos           = OAM + $01
+SnakeSpriteName     = OAM + $02
+SnakeAttrib         = OAM + $03
+;-------------------------------------------------------------------------------
+
 ;-------------------------------------------------------------------------------
 ;   Subroutine: UpdateNeko
 ;   Parameters: -
