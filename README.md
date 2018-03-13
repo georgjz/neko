@@ -29,9 +29,12 @@ throughout.
 from right to left on the stack.*
 
 ## Sample Code
-In `src/NekoCradle.s` you will find a sample program, that will load a tileset
-and corresponding tilemap into VRAM. The graphics are stored in `src/tiledata`.
-You can scroll around the screen with the DPad of controller 1. The corners of
-the scroll area are marked with white tiles. Again, this code is not geared
-towards speed but readability and understanding, since this is also a
-learning project for me.
+In `src/NekoCradle.s` you will find a simple sample program. It will load a tile
+map and a simple sprite sheet of a cat into VRAM. The cat can be moved with the
+DPad of Joypad 1. Once the cat comes to close to the screen boundry, the camera
+will pan in the walking direction.
+
+*__WARNING__: There is a bug in the camera movement code: some times the
+camera will jump a screen instead of panning smoothly when the cat hits the
+scroll boundry. It does not happen every time the game is started, but every other.
+I'm still working on a fix.*
