@@ -20,6 +20,7 @@
 .include "WRAMPointers.inc"
 .include "TileData.inc"
 .include "NekoCradleInitialization.inc"
+.include "Neko.inc"
 ;-------------------------------------------------------------------------------
 
 ;----- Assembler Directives ----------------------------------------------------
@@ -56,9 +57,9 @@
         jsl ClearVRAM           ; write to complete V-RAM once
         jsl ClearCGRAM          ; write to complete CG-RAM once
 
+        jsl ResetOAM
         jsl InitNekoCradle      ; initalize neko cradle data
         jsl InitVariables       ; set up WRAM variables
-        jsl ResetOAM
 
         ; make BG2 and Objects visible
         lda #$12
@@ -82,6 +83,8 @@
 .proc   GameLoop
         wai                     ; wait for NMI / V-Blank
 
+        jsr UpdateNeko          ; handle inputs and events for neko
+
         jmp GameLoop
 .endproc
 ;-------------------------------------------------------------------------------
@@ -94,6 +97,17 @@
 
         ; read input
         jsl PollJoypad1
+
+        ; transfer OAM data
+        tsx                         ; save stack pointer
+        lda #^OAM
+        pha
+        lda #>OAM
+        pha
+        lda #<OAM
+        pha
+        jsl UpdateOAMRAM
+        txs                         ; restore stack pointer
 
         rti
 .endproc

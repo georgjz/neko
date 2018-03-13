@@ -135,7 +135,7 @@
         sta BG2SC
 
         ; set object options
-        lda #$21                ; set OAM Address to $4000
+        lda #$21                ; set OAM Address to $4000, size 8 / 32
         sta OBJSEL
 
         RestoreRegisters        ; restore working registers

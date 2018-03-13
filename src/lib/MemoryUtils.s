@@ -33,6 +33,7 @@
 .export     LoadTileSet         ; Load a tile set into VRAM
 .export     LoadPalette         ; Load palette data into CG-RAM
 .export     LoadTileMap         ; Load a tile map into VRAM
+.export     UpdateOAMRAM        ; Update the OAM-RAM
 ;-------------------------------------------------------------------------------
 
 .segment "CODE"
@@ -115,6 +116,7 @@
         ; set CG-RAM registers
         inx                     ; get next argument
         lda FrameOffset, x
+        ; asl                     ; multiply by 2
         sta CGADD               ; set CG address to Destination
         lda #$22                ; set DMA B-Bus address to CGDATA
         sta BBAD0
@@ -190,3 +192,47 @@
         rtl
 .endproc
 ;----- end of subroutine LoadTileMap -------------------------------------------
+
+;-------------------------------------------------------------------------------
+;   Subroutine: UpdateOAMRAM
+;   Parameters: Source: .faraddr
+;   Description: Load data into OAM-RAM
+;-------------------------------------------------------------------------------
+.proc   UpdateOAMRAM
+        PreserveRegisters       ; preserve working registers
+        phd                     ; preserve callers frame pointer
+        tsc                     ; create own frame pointer
+        tcd
+        FrameOffset = $0b       ; set frame offset to 11: 10 bytes on stack + 1 offset
+        ldx #$00
+
+        ; set source address
+        ldy FrameOffset, x      ; get source address middle and low byte
+        sty A1T0L
+        inx
+        inx
+        lda FrameOffset, x      ; get source address bank
+        sta A1T0B
+
+        ; set OAM-RAM registers
+        stz OAMADDL
+        stz OAMADDH
+        lda #$04                ; set DMA destination to $2104
+        sta BBAD0
+
+        ; set transfer size
+        ldy #$0220              ; set transfer size to $0220
+        sty DAS0L               ; set DMA transfer size
+        stz DAS0B
+
+        ; set DMA channel 0 parameters and start transfer
+        lda #$02                ; 1-address write twice, auto increment
+        sta DMAP0
+        lda #$01                ; start transfer
+        sta MDMAEN
+
+        pld
+        RestoreRegisters        ; restore working registers
+        rtl
+.endproc
+;----- end of subroutine UpdateOAMRAM ------------------------------------------

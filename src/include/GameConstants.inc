@@ -10,21 +10,21 @@
 ; The above copyright notice and this permission notice shall be included in
 ; all copies or substantial portions of the Software.
 ; -----------------------------------------------------------------------------
-;   File: MemoryUtils.inc
+;   File: GameConstants.inc
 ;   Author(s): Georg Ziegler
-;   Description: This a header file for MemoryUtils.s, include this
-;   to use the subroutines in afore mentioned file
+;   Description: This file contains constants that need to be globally visible
 ;
-.ifndef MEMORYUTILS_INC
-.define MEMORYUTILS_INC
+.ifndef GAMECONSTANTS_INC
+.define GAMECONSTANTS_INC
 
 ;-------------------------------------------------------------------------------
-;   Routines found in this file
+;   Display Area/Camera: Constants needed to calculate camera movement
 ;-------------------------------------------------------------------------------
-.import     LoadTileSet         ; Load a tile set into VRAM
-.import     LoadPalette         ; Load palette data into CG-RAM
-.import     LoadTileMap         ; Load a tile map into VRAM
-.import     UpdateOAMRAM        ; Update the OAM-RAM
+ScreenHSize         = $ff       ; screen is 256 dots wide
+ScreenVSize         = $e0       ; screen is 224 dots high (NTSC)
+    ; if the player object enters this boundry, the camera will scroll
+ScrollHBoundry      = ScreenHSize / 5
+ScrollVBoundry      = ScreenVSize / 5
 ;-------------------------------------------------------------------------------
 
-.endif  ; MEMORYUTILS_INC
+.endif  ; GAMECONSTANTS_INC
