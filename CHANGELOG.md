@@ -1,3 +1,7 @@
+## 0.2 - New Graphics and Input handling
+* Added a new simple cat sprite sheet that the player can control
+* Basic Camera moving works
+
 ## 0.1.2 - New Graphic File
 * Tile Data/Graphics are now in their own file to make the code lean and
 clean. They are now included in `src/TileData.s` and `src/include/TileData.inc`
