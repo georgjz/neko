@@ -113,25 +113,6 @@ StandStill:
         lda NekoSpriteName      ; load name
         and #$f0                ; clear lower nibble
         sta NekoSpriteName
-;         lda NekoSpriteName
-;         and #$0f                ; clear higher nibble
-;         cmp #$05
-;         bcc :+
-;         lda NekoSpriteName
-;         and #$f0
-;         ora #$08
-;         sta NekoSpriteName
-;         clc
-;         adc #$20
-;         sta NekoSpriteName + $04
-;         jmp Done
-; :       lda NekoSpriteName
-;         and #$f0
-;         ora #$02
-;         sta NekoSpriteName
-;         clc
-;         adc #$20
-;         sta NekoSpriteName + $04
 
 Done:
         SetXY16
@@ -296,13 +277,9 @@ Done:
         ldx NekoFrameOffset     ; get animation frame offset...
         lda NekoWalkNorth, X    ; ...and get actual animation frame to display
         sta NekoSpriteName      ; object name in OAMRAM
-        ; clc
-        ; adc #$20                ; set lower half of sprite
-        ; sta NekoSpriteName + $04
         ; update attribute
         lda #$20                ; no flip, prio 2, palette 0
         sta NekoAttrib          ; store Attribute in OAMRAM
-        ; sta NekoAttrib + $04
 
         ; update Position
         lda NekoVPos            ; get vertical position
@@ -314,9 +291,6 @@ Done:
 
         ; move Neko sprite
         sta NekoVPos            ; store new Position
-        ; clc
-        ; adc #$10                ; store new Position for lower half of sprite
-        ; sta NekoVPos + $04
         jmp Done
 
         ; move camera up/towards top of screen
@@ -350,27 +324,20 @@ Done:   SetXY16                 ; set X and Y to 16 bit
         ldx NekoFrameOffset     ; get animation frame offset...
         lda NekoWalkSouth, X    ; ...and get actual animation frame to display
         sta NekoSpriteName      ; object name in OAMRAM
-        ; clc
-        ; adc #$20                ; set lower half of sprite
-        ; sta NekoSpriteName + $04
         ; update attribute
         lda #$20                ; no flip, prio 2, palette 0
         sta NekoAttrib          ; store Attribute in OAMRAM
-        ; sta NekoAttrib + $04
 
         ; update Position
         lda NekoVPos            ; get vertical position
         clc                     ; decrease current position by walk speed...
         adc #NekoWalkSpeed      ; ...to obtain new vertical (sprite) position
         ; check if new position lies within boundry area
-        cmp # (ScreenVSize - ScrollVBoundry - $40)     ; if new position lies within scroll boundry...
+        cmp # (ScreenVSize - ScrollVBoundry - $20)     ; if new position lies within scroll boundry...
         bcs MoveCamera          ; ...move the camera instead
 
         ; move Neko sprite
         sta NekoVPos            ; store new Position
-        ; clc
-        ; adc #$10                ; store new Position for lower half of sprite
-        ; sta NekoVPos + $04
         jmp Done
 
         ; move camera down/towards bottom of screen
@@ -406,13 +373,9 @@ Done:   SetXY16                 ; set X and Y to 16 bit
         ldx NekoFrameOffset     ; get animation frame offset...
         lda NekoWalkEast, X     ; ...and get actual animation frame to display
         sta NekoSpriteName      ; object name in OAMRAM
-        ; clc
-        ; adc #$20                ; set lower half of sprite
-        ; sta NekoSpriteName + $04
         ; update attribute
         lda #$60                ; H-flip, prio 2, palette 0
         sta NekoAttrib          ; store Attribute in OAMRAM
-        ; sta NekoAttrib + $04
 
         ; update Position
         lda NekoHPos            ; get horizontal position
@@ -424,7 +387,6 @@ Done:   SetXY16                 ; set X and Y to 16 bit
 
         ; move Neko sprite
         sta NekoHPos            ; store new Position
-        ; sta NekoHPos + $04
         jmp Done
 
         ; move camera to the left
@@ -458,20 +420,16 @@ Done:   SetXY16                 ; set X and Y to 16 bit
         ldx NekoFrameOffset     ; get animation frame offset...
         lda NekoWalkWest, X     ; ...and get actual animation frame to display
         sta NekoSpriteName      ; object name in OAMRAM
-        ; clc
-        ; adc #$20                ; set lower half of sprite
-        ; sta NekoSpriteName + $04
         ; update attribute
         lda #$20                ; no flip, prio 2, palette 0
         sta NekoAttrib          ; store Attribute in OAMRAM
-        ; sta NekoAttrib + $04
 
         ; update Position
         lda NekoHPos            ; get horizontal position
         clc                     ; decrease current position by walk speed...
         adc #NekoWalkSpeed      ; ...to obtain new horizontal (sprite) position
         ; check if new position lies within boundry area
-        cmp # (ScreenHSize - ScrollHBoundry - $40)    ; if new position lies within scroll boundry...
+        cmp # (ScreenHSize - ScrollHBoundry - $20)    ; if new position lies within scroll boundry...
         bcs MoveCamera          ; ...move the camera instead
 
         ; move Neko sprite
