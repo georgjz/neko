@@ -31,7 +31,7 @@
 .export     BG2HOffset          ; Background 2 horizontal offset
 .export     BG2VOffset          ; Background 2 vertical offset
 .export     BG3HOffset          ; Background 3 horizontal offset
-.export     BG3VOffset          ; Background 3 vertical offset;-------------------------------------------------------------------------------
+.export     BG3VOffset          ; Background 3 vertical offset
 .export     OAM
 .export     NekoFrameCount
 .export     NekoFrameOffset

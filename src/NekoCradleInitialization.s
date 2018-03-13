@@ -10,7 +10,7 @@
 ; The above copyright notice and this permission notice shall be included in
 ; all copies or substantial portions of the Software.
 ; -----------------------------------------------------------------------------
-;   File: NekoCradleeInitialization.s
+;   File: NekoCradleInitialization.s
 ;   Author(s): Georg Ziegler
 ;   Description: This file contains subroutines to initialize the basic cradle
 ;   data and variables.
