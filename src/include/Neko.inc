@@ -10,13 +10,13 @@
 ; The above copyright notice and this permission notice shall be included in
 ; all copies or substantial portions of the Software.
 ; -----------------------------------------------------------------------------
-;   File: UpdateNeko.inc
+;   File: Neko.inc
 ;   Author(s): Georg Ziegler
-;   Description: This a header file for UpdateNeko.s, include this
+;   Description: This a header file for Neko.s, include this
 ;   to use the subroutines in afore mentioned file
 ;
-.ifndef UPDATENEKO_INC
-.define UPDATENEKO_INC
+.ifndef NEKO_INC
+.define NEKO_INC
 
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file
@@ -24,4 +24,4 @@
 .import     UpdateNeko          ; Handles input and other events for Neko
 ;-------------------------------------------------------------------------------
 
-.endif  ; UPDATENEKO_INC
+.endif  ; NEKO_INC
