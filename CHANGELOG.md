@@ -1,3 +1,9 @@
+## 0.3 - Major restructure
+* The directory structure changed to better reflect the separate parts of the
+program
+* Makefile updated to work better with custom file structure
+* See README for more details
+ 
 ## 0.2 - New Graphics and Input handling
 * Added a new simple cat sprite sheet that the player can control
 * Basic Camera moving works
