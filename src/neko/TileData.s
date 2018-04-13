@@ -35,9 +35,9 @@
 ;-------------------------------------------------------------------------------
 ;   Pointers to graphics in ROM
 ;-------------------------------------------------------------------------------
-ChessTileSet:   .incbin "tiledata/ChessTileSet.bin"
-ChessPalette:   .incbin "tiledata/ChessPalette.pal"
-ChessTileMap:   .incbin "tiledata/ChessTileMap.map"
-NekoSpriteSheet:.incbin "tiledata/NekoSpriteSheet.bin"
-NekoPalette:    .incbin "tiledata/NekoPalette.pal"
+ChessTileSet:   .incbin "ChessTileSet.vra"
+ChessPalette:   .incbin "ChessPalette.pal"
+ChessTileMap:   .incbin "ChessTileMap.map"
+NekoSpriteSheet:.incbin "NekoSpriteSheet.vra"
+NekoPalette:    .incbin "NekoPalette.pal"
 ;-------------------------------------------------------------------------------

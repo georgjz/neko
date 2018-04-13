@@ -28,8 +28,41 @@ throughout.
 *__Important__: The parameters listed in the subroutine header must be passed
 from right to left on the stack.*
 
+## Structure
+In `src/` you will find several directories. Here is a short description of the
+contents:
+* `input`: These routines handle reading both joypads of the SNES.
+* `macros`: Macros to change register sizes, etc.
+* `memory`: Subroutines to transfer memory with DMA to VRAM, CGRAM, etc.
+* `neko`: A simple example game of a cat walking around. See *Sample Code* below.
+* `snesinit`: Subroutines to initialize the SNES before running a game.
+Generally, you will find a `s` and `inc` file of the same name. Include the `inc`
+file with `.include` in your source code to use the subroutines in the matching
+`s` file.
+
+## Building
+There is a makefile that should take care of it. Simple clone the code and use make
+to build it:
+```
+$ git clone https://github.com/georgjz/neko.git
+$ cd meko
+$ make
+```
+At the very beginning of the makefile there are two options you can set:
+```
+# Edit this portion to fit your project
+MMAP		= MemoryMap.cfg			# memory map file needed by ld65 linker
+BUILDNAME	= NekoCradle.smc     	# name of the final ROM
+```
+The `MMAP` is the name of the memory map file ld65 needs to build the ROM. Check
+the [cc65 toolchain documentation](https://cc65.github.io/doc/) for details.
+`BUILDNAME` will simply determine the name of the output ROM file. This file will
+be placed in `build/release`. There is no debug option in the makefile yet.
+*__Warning__: Do not alter anything else in the makefile unless you know how makefiles
+work.*  
+
 ## Sample Code
-In `src/NekoCradle.s` you will find a simple sample program. It will load a tile
+In `src/neko` you will find a simple sample program. It will load a tile
 map and a simple sprite sheet of a cat into VRAM. The cat can be moved with the
 DPad of Joypad 1. Once the cat comes to close to the screen boundry, the camera
 will pan in the walking direction.
