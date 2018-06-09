@@ -1,9 +1,12 @@
+## 0.4 - Improve and streamline subroutine calling
+* The repository has been split in two branches: the `master` branch contains the library code; while `testrom` contains files for building a example ROM for how to use the library routines. Check `README.md` for details.
+
 ## 0.3 - Major restructure
 * The directory structure changed to better reflect the separate parts of the
 program
 * Makefile updated to work better with custom file structure
 * See README for more details
- 
+
 ## 0.2 - New Graphics and Input handling
 * Added a new simple cat sprite sheet that the player can control
 * Basic Camera moving works
