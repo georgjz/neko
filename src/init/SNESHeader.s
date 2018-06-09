@@ -64,16 +64,19 @@
 .addr           eNMIHandler,ResetStub,  eIRQHandler
 
 ;-------------------------------------------------------------------------------
-;   Stubs for the vectors 
+;   Stubs for the vectors
 ;-------------------------------------------------------------------------------
-.segment "CODE"
+.segment "RESETVECTOR"
 ; These stubs make sure that the Reset, NMI, and IRQ handlers are found even
 ; if they are located in another bank than $00/$80
 NMIStub:
     jml NMIHandler
 
 ResetStub:
-    jml ResetHandler
+    sei                         ; disable interrupts
+    clc                         ; set processor to...
+    xce                         ; ...native mode
+    jml ResetHandler            ; jump to game's reset handler
 
 IRQStub:
     jml IRQHandler

@@ -215,8 +215,8 @@
         sta A1T0B
 
         ; set OAM-RAM registers
-        stz OAMADDL
-        stz OAMADDH
+        stz OAMADDL             ; start reseting OAM address...
+        stz OAMADDH             ; ...to $00
         lda #$04                ; set DMA destination to $2104
         sta BBAD0
 
@@ -231,7 +231,7 @@
         lda #$01                ; start transfer
         sta MDMAEN
 
-        pld
+        pld                     ; restore caller's frame pointer
         RestoreRegisters        ; restore working registers
         rtl
 .endproc

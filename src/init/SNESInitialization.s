@@ -87,7 +87,7 @@ loop5:  stz $00, X              ; registers $2121 through $2133
 
         ; special values
         lda #$30
-        sta CGWSEL
+        sta CGSWSEL
         lda #$e0
         sta COLDATA
 

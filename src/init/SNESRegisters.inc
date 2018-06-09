@@ -69,7 +69,7 @@
     TS          := $212D    ; Sub  Screen Designation
     TMW         := $212E    ; Window Area Main Screen Disable
     TSW         := $212F    ; Window Area Sub  Screen Disable
-    CGWSEL      := $2130    ; Color Math Control Register A
+    CGSWSEL     := $2130    ; Color Math Control Register A
     CGADSUB     := $2131    ; Color Math Control Register B
     COLDATA     := $2132    ; Color Math Sub Screen Backdrop Color
     SETINI      := $2133    ; Display Control 2

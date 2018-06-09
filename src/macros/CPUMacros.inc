@@ -10,7 +10,7 @@
 ; The above copyright notice and this permission notice shall be included in
 ; all copies or substantial portions of the Software.
 ; -----------------------------------------------------------------------------
-;   File: CPUMacros.s
+;   File: CPUMacros.inc
 ;   Author(s): Georg Ziegler
 ;   Description: This file contains Macros to replace common code snippets
 ;
@@ -48,6 +48,27 @@
 ;-------------------------------------------------------------------------------
 ;   Subroutine Macros: Macros mainly used by subroutines
 ;-------------------------------------------------------------------------------
+.macro  PushSizeB    Size       ; push a 1 byte data size to stack
+        lda #Size
+        pha
+.endmacro
+
+.macro  PushSizeW   Size        ; push a 2 byte data size to stack
+        pea Size
+.endmacro
+
+.macro  PushSizeF   Size        ; push a 3 byte data size to stack
+        lda #^Size
+        pha
+        pea Size
+.endmacro
+
+.macro  PushFarAddr SrcAddr     ; push a .faraddr to stack
+        lda #^SrcAddr
+        pha
+        pea SrcAddr
+.endmacro
+
 .macro  PreserveRegisters
         pha                     ; preserve working registers
         phx

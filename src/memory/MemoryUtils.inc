@@ -24,7 +24,7 @@
 .import     LoadTileSet         ; Load a tile set into VRAM
 .import     LoadPalette         ; Load palette data into CG-RAM
 .import     LoadTileMap         ; Load a tile map into VRAM
-.import     UpdateOAMRAM        ; Update the OAM-RAM
+.import     UpdateOAMRAM        ; Update the OAM-RAM 
 ;-------------------------------------------------------------------------------
 
 .endif  ; MEMORYUTILS_INC
