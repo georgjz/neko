@@ -1,3 +1,6 @@
+## 0.5 - Remove testrom branch
+* I removed the `testrom` branch to keep this repository clean. The test ROM files have been moved to [neko-test](https://github.com/georgjz/neko-test). Check it for build instructions.
+
 ## 0.4 - Improve and streamline subroutine calling
 * The repository has been split in two branches: the `master` branch contains the library code; while `testrom` contains files for building a example ROM for how to use the library routines. Check `README.md` for details.
 
