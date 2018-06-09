@@ -13,7 +13,8 @@
 ;   File: SNESRegisters.inc
 ;   Author(s): Georg Ziegler
 ;   Description: This files contain symbols to use as aliases for various
-;   SNESRegisters.
+;   SNESRegisters. There are also aliases for various register flags that can be
+;   combined with the bit-wise or-operator | / .bitor
 ;
 .ifndef SNESREGISTERS_INC
 .define SNESREGISTERS_INC
@@ -231,5 +232,95 @@
     A2A7L       := $4378    ; DMA7 HDMA Table Address, lower byte
     A2A7H       := $4379    ; DMA7 HDMA Table Address, higher byte
     NTRL7       := $437A    ; DMA7 HDMA Line-Counter
+;-------------------------------------------------------------------------------
+;   Flags, ordered from most to least significant byte
+;-------------------------------------------------------------------------------
+    ; $2100 : INIDISP
+    FORCED_BLANKING_OFF = $00   ; Turn forced blanking off
+    FORCED_BLANKING_ON  = $80   ; Turn forced blanking on
+    SCR_BRG_MASK        = $0f   ; Mask for screen brightness
+    ; $2101 : OBJSEL
+    OBJ_SIZE_8_16       = $00   ; Object size, small 8x8, large 16x16
+    OBJ_SIZE_8_32       = $20   ; Object size, small 8x8, large 32x32
+    OBJ_SIZE_8_64       = $40   ; Object size, small 8x8, large 64x64
+    OBJ_SIZE_16_32      = $60   ; Object size, small 16x16, large 32x32
+    OBJ_SIZE_16_64      = $80   ; Object size, small 16x16, large 64x64
+    OBJ_SIZE_32_64      = $a0   ; Object size, small 32x32, large 64x64
+    ; $2103 : OAMADDH
+    OAM_PRIO_ROTATION   = $80   ; OAM priority rotation
+    ; $2105 : BGMODE
+    BG4_SIZE_8          = $00   ; Background 4 tile size 8x8
+    BG4_SIZE_16         = $80   ; Background 4 tile size 16x16
+    BG3_SIZE_8          = $00   ; Background 3 tile size 8x8
+    BG3_SIZE_16         = $40   ; Background 3 tile size 16x16
+    BG2_SIZE_8          = $00   ; Background 2 tile size 8x8
+    BG2_SIZE_16         = $20   ; Background 2 tile size 16x16
+    BG1_SIZE_8          = $00   ; Background 1 tile size 8x8
+    BG1_SIZE_16         = $10   ; Background 1 tile size 16x16
+    BG3_PRIO_OFF        = $00   ; Background 3 not highest priority in Mode 0 and 1
+    BG3_PRIO_ON         = $08   ; Background 3 highest priority in Mode 0 and 1
+    BG_MODE_0           = $00   ; Background Mode 0
+    BG_MODE_1           = $01   ; Background Mode 1
+    BG_MODE_2           = $02   ; Background Mode 2
+    BG_MODE_3           = $03   ; Background Mode 3
+    BG_MODE_4           = $04   ; Background Mode 4
+    BG_MODE_5           = $05   ; Background Mode 5
+    BG_MODE_6           = $06   ; Background Mode 6
+    BG_MODE_7           = $07   ; Background Mode 7
+    ; $2106 : MOSAIC
+    MOSAIC_SIZE_1       = $00   ; Mosaic size 1x1
+    MOSAIC_SIZE_2       = $10   ; Mosaic size 2x2
+    MOSAIC_SIZE_3       = $20   ; Mosaic size 3x3
+    MOSAIC_SIZE_4       = $30   ; Mosaic size 4x4
+    MOSAIC_SIZE_5       = $40   ; Mosaic size 5x5
+    MOSAIC_SIZE_6       = $50   ; Mosaic size 6x6
+    MOSAIC_SIZE_7       = $60   ; Mosaic size 7x7
+    MOSAIC_SIZE_8       = $70   ; Mosaic size 8x8
+    MOSAIC_SIZE_9       = $80   ; Mosaic size 9x9
+    MOSAIC_SIZE_10      = $90   ; Mosaic size 10x10
+    MOSAIC_SIZE_11      = $a0   ; Mosaic size 11x11
+    MOSAIC_SIZE_12      = $b0   ; Mosaic size 12x12
+    MOSAIC_SIZE_13      = $c0   ; Mosaic size 13x13
+    MOSAIC_SIZE_14      = $d0   ; Mosaic size 14x14
+    MOSAIC_SIZE_15      = $e0   ; Mosaic size 15x15
+    MOSAIC_SIZE_16      = $f0   ; Mosaic size 16x16
+    BG4_MOSAIC_OFF      = $00   ; Turn off mosaic for background 4
+    BG4_MOSAIC_ON       = $08   ; Turn on mosaic for background 4
+    BG3_MOSAIC_OFF      = $00   ; Turn off mosaic for background 3
+    BG3_MOSAIC_ON       = $04   ; Turn on mosaic for background 3
+    BG2_MOSAIC_OFF      = $00   ; Turn off mosaic for background 2
+    BG2_MOSAIC_ON       = $02   ; Turn on mosaic for background 2
+    BG1_MOSAIC_OFF      = $00   ; Turn off mosaic for background 1
+    BG1_MOSAIC_ON       = $01   ; Turn on mosaic for background 1
+    ; $2107 : BG1SC
+    BG1_SC_SIZE_32      = $00   ; Background 1 screen size 32x32 tiles
+    BG1_SC_SIZE_64_32   = $01   ; Background 1 screen size 64x32 tiles
+    BG1_SC_SIZE_32_64   = $02   ; Background 1 screen size 32x64 tiles
+    BG1_SC_SIZE_64      = $03   ; Background 1 screen size 64x64 tiles
+    ; $2108 : BG2SC
+    BG2_SC_SIZE_32      = $00   ; Background 2 screen size 32x32 tiles
+    BG2_SC_SIZE_64_32   = $01   ; Background 2 screen size 64x32 tiles
+    BG2_SC_SIZE_32_64   = $02   ; Background 2 screen size 32x64 tiles
+    BG2_SC_SIZE_64      = $03   ; Background 2 screen size 64x64 tiles
+    ; $2109 : BG3SC
+    BG3_SC_SIZE_32      = $00   ; Background 3 screen size 32x32 tiles
+    BG3_SC_SIZE_64_32   = $01   ; Background 3 screen size 64x32 tiles
+    BG3_SC_SIZE_32_64   = $02   ; Background 3 screen size 32x64 tiles
+    BG3_SC_SIZE_64      = $03   ; Background 3 screen size 64x64 tiles
+    ; $210a : BG3SC
+    BG4_SC_SIZE_32      = $00   ; Background 4 screen size 32x32 tiles
+    BG4_SC_SIZE_64_32   = $01   ; Background 4 screen size 64x32 tiles
+    BG4_SC_SIZE_32_64   = $02   ; Background 4 screen size 32x64 tiles
+    BG4_SC_SIZE_64      = $03   ; Background 4 screen size 64x64 tiles
+    ; $2115 : VMAINC
+    INC_TIMING_LOW      = $00   ; Increment address after write to $2118 or $2139
+    INC_TIMING_HIGH     = $80   ; Increment address after write to $2119 or $213a
+    VRAM_INC_2BIT       = $04   ; Increment value by 8 (for 32 times), 2bpp format
+    VRAM_INC_4BIT       = $08   ; Increment value by 8 (for 64 times), 4bpp format
+    VRAM_INC_8BIT       = $0c   ; Increment value by 8 (for 128 times), 8bpp format
+    VRAM_INC_1BY1       = $00   ; Address increments 1 by 1
+    VRAM_INC_32BY32     = $01   ; Address increments 32 by 32
+    VRAM_INC_128BY128   = $02   ; Address increments 128 by 128
+
 
 .endif  ; SNESREGISTERS_INC
