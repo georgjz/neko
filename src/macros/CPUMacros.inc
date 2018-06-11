@@ -60,13 +60,13 @@
 .macro  PushSizeF   Size        ; push a 3 byte data size to stack
         lda #^Size
         pha
-        pea Size
+        pea .LOWORD(Size)
 .endmacro
 
 .macro  PushFarAddr SrcAddr     ; push a .faraddr to stack
         lda #^SrcAddr
         pha
-        pea SrcAddr
+        pea .LOWORD(SrcAddr)
 .endmacro
 
 .macro  PreserveRegisters
