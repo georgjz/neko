@@ -81,5 +81,19 @@
         pla
 .endmacro
 ;-------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
+;   Arithmetic Macros: Simplify common arithemic operations
+;-------------------------------------------------------------------------------
+.macro  ShiftALeft count
+    .repeat count
+        asl
+    .endrepeat
+.endmacro
+
+.macro  ShiftARight count
+    .repeat count
+        lsr
+    .endrepeat
+.endmacro
 
 .endif  ; CPUMACROS_INC
