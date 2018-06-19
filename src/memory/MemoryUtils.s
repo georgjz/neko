@@ -94,7 +94,7 @@
 
 ;-------------------------------------------------------------------------------
 ;   Subroutine: LoadPalette
-;   Parameters: Source: .faraddr, Destination: .byte, Size: .word
+;   Parameters: Source: .faraddr, Destination: .byte, Size: .byte
 ;   Description: Load palette data into CG-RAM
 ;-------------------------------------------------------------------------------
 .proc   LoadPalette

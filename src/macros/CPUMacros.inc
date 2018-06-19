@@ -60,13 +60,13 @@
 .macro  PushSizeF   Size        ; push a 3 byte data size to stack
         lda #^Size
         pha
-        pea Size
+        pea .LOWORD(Size)
 .endmacro
 
 .macro  PushFarAddr SrcAddr     ; push a .faraddr to stack
         lda #^SrcAddr
         pha
-        pea SrcAddr
+        pea .LOWORD(SrcAddr)
 .endmacro
 
 .macro  PreserveRegisters
@@ -81,5 +81,19 @@
         pla
 .endmacro
 ;-------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
+;   Arithmetic Macros: Simplify common arithemic operations
+;-------------------------------------------------------------------------------
+.macro  ShiftALeft count
+    .repeat count
+        asl
+    .endrepeat
+.endmacro
+
+.macro  ShiftARight count
+    .repeat count
+        lsr
+    .endrepeat
+.endmacro
 
 .endif  ; CPUMACROS_INC
