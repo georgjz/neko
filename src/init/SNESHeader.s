@@ -36,7 +36,7 @@
 .byte   $00                     ; No special version
 .byte   $00                     ; Sub-Cartridge number, no used
         ;0123456789abcdef01234
-.byte   "SNES Neko Cradle     " ; Name Title, 21 bytes long
+.byte   "SNES Neko Library    " ; Name Title, 21 bytes long
 .byte   $20                     ; Map Mode, Mode 20 2.68 MHz (normal speed)
 .byte   $00                     ; Cartridge Type, ROM only, no co-processor
 .byte   $09                     ; ROM Size, 3 ~ 4 MBit

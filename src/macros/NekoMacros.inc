@@ -10,12 +10,12 @@
 ; The above copyright notice and this permission notice shall be included in
 ; all copies or substantial portions of the Software.
 ; -----------------------------------------------------------------------------
-;   File: CPUMacros.inc
+;   File: NekoMacros.inc
 ;   Author(s): Georg Ziegler
 ;   Description: This file contains Macros to replace common code snippets
 ;
-.ifndef CPUMACROS_INC
-.define CPUMACROS_INC
+.ifndef NEKOMACROS_INC
+.define NEKOMACROS_INC
 
 ;-------------------------------------------------------------------------------
 ;   Registers Macros: These sets the registers to specific widths
@@ -96,4 +96,4 @@
     .endrepeat
 .endmacro
 
-.endif  ; CPUMACROS_INC
+.endif  ; NEKOMACROS_INC
