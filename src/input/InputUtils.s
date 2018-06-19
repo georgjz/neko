@@ -34,7 +34,7 @@
 .export     PollJoypad2         ; Poll the data from Joypad 2
 ;-------------------------------------------------------------------------------
 
-.segment "CODE"
+.segment "NEKOLIB"
 ;-------------------------------------------------------------------------------
 ;   Subroutine: PollJoypad1
 ;   Parameters: -

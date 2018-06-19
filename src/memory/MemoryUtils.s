@@ -36,7 +36,7 @@
 .export     UpdateOAMRAM        ; Update the OAM-RAM
 ;-------------------------------------------------------------------------------
 
-.segment "CODE"
+.segment "NEKOLIB"
 ;-------------------------------------------------------------------------------
 ;   Subroutine: LoadTileSet
 ;   Parameters: Source: .faraddr, Destination Segment: .byte, Size: .faraddr

@@ -36,7 +36,7 @@
 .export     ClearOAMRAM         ; Clear OAM-RAM to $ff (all sprites off screen)
 ;-------------------------------------------------------------------------------
 
-.segment "CODE"
+.segment "NEKOLIB"
 ;-------------------------------------------------------------------------------
 ;   Subroutine: ClearRegisters
 ;   Parameters: -
