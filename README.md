@@ -16,7 +16,7 @@ As stated above, this is not an engine. This library provides easy to use subrou
 Another difference is the way arguments are passed to subroutines. This library tries to avoid the need for large variable tables. Instead, arguments and variables are stored on stack. See *Passing Arguments to Subroutines* below for details.
 
 ## Usage
-The simpliest way to use Neko Library with your project is to add is as a git submodule - see [this sample project](https://github.com/georgjz/neko-test). You only need to include `NekoLib.inc` in your source file and you're good to go.
+The simplest way to use Neko Library with your project is to add is as a git submodule - see [this sample project](https://github.com/georgjz/neko-test). You only need to include `NekoLib.inc` in your source file and you're good to go.
 
 ## Passing Arguments to Subroutines
 Unlike most other projects the arguments for the subroutines for loading VRAM, etc. are passed by stack, not by register. This is a deliberate design choice to ensure that call stacks with varying depths work without loss of (register) data. It will also make the subroutines re-entrant and eliminates the need to keep (intermittent) variables for a given subroutine in WRAM. Each level of nesting keeps its own variables on the stack, and when they are no longer needed they simply disappear.
