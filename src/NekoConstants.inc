@@ -10,19 +10,29 @@
 ; The above copyright notice and this permission notice shall be included in
 ; all copies or substantial portions of the Software.
 ; -----------------------------------------------------------------------------
-;   File: InputUtils.inc
+;   File: NekoConstants.inc
 ;   Author(s): Georg Ziegler
-;   Description: This a header file for InputUtils.s, include this
-;   to use the subroutines in afore mentioned file
+;   Description: This files contain constants useful as aliases when using the
+;   subroutines of the Neko Library to create more verbose code.
 ;
-.ifndef INPUTUTILS_INC
-.define INPUTUTILS_INC
+.ifndef NEKOCONSTANTS_INC
+.define NEKOCONSTANTS_INC
 
 ;-------------------------------------------------------------------------------
-;   Routines found in this file
+;   Constants useful for reading joypad data
 ;-------------------------------------------------------------------------------
-.import     PollJoypad1         ; Poll the data from Joypad 1
-.import     PollJoypad2         ; Poll the data from Joypad 2
+MASK_BUTTON_B       = $8000
+MASK_BUTTON_Y       = $4000
+MASK_BUTTON_SELECT  = $2000
+MASK_BUTTON_START   = $1000
+MASK_BUTTON_UP      = $0800
+MASK_BUTTON_DOWN    = $0400
+MASK_BUTTON_LEFT    = $0200
+MASK_BUTTON_RIGHT   = $0100
+MASK_BUTTON_A       = $0080
+MASK_BUTTON_X       = $0040
+MASK_BUTTON_L       = $0020
+MASK_BUTTON_R       = $0010
 ;-------------------------------------------------------------------------------
 
-.endif  ; INPUTUTILS_INC
+.endif  ; NEKOCONSTANTS_INC

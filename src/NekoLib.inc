@@ -21,9 +21,10 @@
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file
 ;-------------------------------------------------------------------------------
-.include    "NekoLibLauncher.inc"
-.include    "NekoOpcodeTable.inc"
-.include    "NekoMacros.inc"
+.include    "NekoConstants.inc"         ; constants useful as aliases
+.include    "NekoLibLauncher.inc"       ; the opcode launcher to call library subroutines
+.include    "NekoOpcodeTable.inc"       ; the opcode table for library subroutines
+.include    "NekoMacros.inc"            ; macros included in the library 
 ;-------------------------------------------------------------------------------
 
 .endif  ; NEKOLIB_INC
