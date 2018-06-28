@@ -1,3 +1,7 @@
+## 0.5.1 - Improve Input Handling
+* The PollJoypad1 and PollJoypad2 subroutines now no longer need a fixed symbol/address for storing input data. Now the subroutines will store the input data in the address/pointer passed by stack to the subroutines.
+* Fix small things in the macros
+
 ## 0.5 - Remove testrom branch
 * I removed the `testrom` branch to keep this repository clean. The test ROM files have been moved to [neko-test](https://github.com/georgjz/neko-test). Check it for build instructions.
 
