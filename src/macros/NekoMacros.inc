@@ -58,13 +58,13 @@
 .endmacro
 
 .macro  PushSizeF   Size        ; push a 3 byte data size to stack
-        lda .BANKBYTE(Size)
+        lda #.BANKBYTE(Size)
         pha
         pea .LOWORD(Size)
 .endmacro
 
 .macro  PushFarAddr SrcAddr     ; push a .faraddr to stack
-        lda .BANKBYTE(SrcAddr)
+        lda #.BANKBYTE(SrcAddr)
         pha
         pea .LOWORD(SrcAddr)
 .endmacro
