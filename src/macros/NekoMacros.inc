@@ -48,7 +48,7 @@
 ;-------------------------------------------------------------------------------
 ;   Subroutine Macros: Macros mainly used by subroutines
 ;-------------------------------------------------------------------------------
-.macro  PushSizeB    Size       ; push a 1 byte data size to stack
+.macro  PushSizeB   Size        ; push a 1 byte data size to stack
         lda #Size
         pha
 .endmacro

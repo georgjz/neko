@@ -1,3 +1,7 @@
+## 0.5.3 - Minor code improvments
+* Minor fixes in the macros code
+* Better code relocatability
+
 ## 0.5.2 - Add DPAD Constant
 * Add a constant to `NekoConstants.inc` that helps checking whether a DPAD button was pressed.
 

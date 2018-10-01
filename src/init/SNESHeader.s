@@ -19,9 +19,9 @@
 ;-------------------------------------------------------------------------------
 ;   Imports from other files
 ;-------------------------------------------------------------------------------
-.import     ResetHandler        ; The entry point after start up/reset
-.import     NMIHandler          ; Interrupt called on V-Blank
-.import     IRQHandler          ; IRQ is not used in this project
+.import     ResetHandler : far  ; The entry point after start up/reset
+.import     NMIHandler : far    ; Interrupt called on V-Blank
+.import     IRQHandler : far    ; IRQ is not used in this project
 ;-------------------------------------------------------------------------------
 
 ;-------------------------------------------------------------------------------
