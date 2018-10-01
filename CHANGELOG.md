@@ -1,3 +1,6 @@
+## 0.5.2 - Add DPAD Constant
+* Add a constant to `NekoConstants.inc` that helps checking whether a DPAD button was pressed.
+
 ## 0.5.1 - Improve Input Handling
 * The PollJoypad1 and PollJoypad2 subroutines now no longer need a fixed symbol/address for storing input data. Now the subroutines will store the input data in the address/pointer passed by stack to the subroutines.
 * Fix small things in the macros
