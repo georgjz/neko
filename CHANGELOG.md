@@ -1,4 +1,7 @@
-## 0.5.3 - Minor code improvments
+## 0.5.4 - Minor fix
+* Fixed the header guards of all include files, should now work as expected (include a header multiple times will have no negative effect)
+
+## 0.5.3 - Minor code improvements
 * Minor fixes in the macros code
 * Better code relocatability
 
