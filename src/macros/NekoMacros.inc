@@ -15,7 +15,7 @@
 ;   Description: This file contains Macros to replace common code snippets
 ;
 .ifndef NEKOMACROS_INC
-.define NEKOMACROS_INC
+NEKOMACROS_INC = 1
 
 ;-------------------------------------------------------------------------------
 ;   Registers Macros: These sets the registers to specific widths

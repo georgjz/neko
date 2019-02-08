@@ -15,7 +15,7 @@
 ;   Description: Header to import the library's opcode launcher
 ;
 .ifndef NEKOLIBLAUNCHER_INC
-.define NEKOLIBLAUNCHER_INC
+NEKOLIBLAUNCHER_INC = 1
 
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file

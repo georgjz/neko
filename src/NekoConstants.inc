@@ -16,7 +16,7 @@
 ;   subroutines of the Neko Library to create more verbose code.
 ;
 .ifndef NEKOCONSTANTS_INC
-.define NEKOCONSTANTS_INC
+NEKOCONSTANTS_INC = 1
 
 ;-------------------------------------------------------------------------------
 ;   Constants useful for reading joypad data

@@ -16,7 +16,7 @@
 ;   This table is used by OpcodeLauncher.s
 ;
 .ifndef NEKOOPCODETABLE_INC
-.define NEKOOPCODETABLE_INC
+NEKOOPCODETABLE_INC = 1
 
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file

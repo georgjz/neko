@@ -17,7 +17,7 @@
 ;   combined with the bit-wise or-operator | / .bitor
 ;
 .ifndef SNESREGISTERS_INC
-.define SNESREGISTERS_INC
+SNESREGISTERS_INC = 1
 
 ;-------------------------------------------------------------------------------
 ;   PPU Registers

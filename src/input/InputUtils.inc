@@ -16,7 +16,7 @@
 ;   to use the subroutines in afore mentioned file
 ;
 .ifndef INPUTUTILS_INC
-.define INPUTUTILS_INC
+INPUTUTILS_INC = 1
 
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file
