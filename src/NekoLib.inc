@@ -16,7 +16,7 @@
 ;   Library in your project/code.
 ;
 .ifndef NEKOLIB_INC
-.define NEKOLIB_INC
+NEKOLIB_INC = 1
 
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file
@@ -24,7 +24,7 @@
 .include    "NekoConstants.inc"         ; constants useful as aliases
 .include    "NekoLibLauncher.inc"       ; the opcode launcher to call library subroutines
 .include    "NekoOpcodeTable.inc"       ; the opcode table for library subroutines
-.include    "NekoMacros.inc"            ; macros included in the library 
+.include    "NekoMacros.inc"            ; macros included in the library
 ;-------------------------------------------------------------------------------
 
 .endif  ; NEKOLIB_INC

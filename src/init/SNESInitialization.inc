@@ -16,7 +16,7 @@
 ;   to use the subroutines in afore mentioned file
 ;
 .ifndef SNESINITIALIZATION_INC
-.define SNESINITIALIZATION_INC
+SNESINITIALIZATION_INC = 1
 
 ;-------------------------------------------------------------------------------
 ;   Routines found in this file
